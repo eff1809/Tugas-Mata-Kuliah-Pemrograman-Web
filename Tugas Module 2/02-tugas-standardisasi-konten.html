@@ -47,6 +47,64 @@
                 </li>
             </ol>
         </section>
+
+        <!-- Bagian Tabel Publikasi -->
+        <!-- Bikin tabel kompleks dengan thead, tbody, tfoot, colspan, dan rowspan -->
+        <section id="publikasi">
+            <h2>Daftar Publikasi Ilmiah</h2>
+            
+            <table border="1" cellpadding="8" cellspacing="0">
+                <thead>
+                    <tr>
+                        <!-- Baris pertama header tabel, pakai rowspan buat gabungin baris ke bawah -->
+                        <th scope="col" rowspan="2">No.</th>
+                        <th scope="col" rowspan="2">Nama Peneliti</th>
+                        <!-- Pakai colspan buat gabungin 2 kolom ke samping -->
+                        <th scope="col" colspan="2">Detail Publikasi</th>
+                        <th scope="col" rowspan="2">Tahun</th>
+                    </tr>
+                    <tr>
+                        <!-- Baris kedua header (turunan dari Detail Publikasi) -->
+                        <th scope="col">Judul Penelitian</th>
+                        <th scope="col">Jurnal / Konferensi</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <!-- scope="row" buat nandain kalau ini header untuk baris tersebut -->
+                        <th scope="row">1</th>
+                        <td>Dr. Alan Turing, M.Kom.</td>
+                        <td>Penerapan Natural Language Processing untuk Analisis Sentimen</td>
+                        <td>Jurnal Ilmiah Teknologi Cerdas</td>
+                        <td>2025</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <!-- Dosen ini punya 2 publikasi, jadi kita gabungin barisnya pakai rowspan -->
+                        <td rowspan="2">Prof. Ada Lovelace, Ph.D.</td>
+                        <td>Optimasi Kueri pada Sistem Manajemen Basis Data Relasional</td>
+                        <td>International Journal of Data Science</td>
+                        <td>2025</td>
+                    </tr>
+                    <tr>
+                        <!-- Baris ini gak butuh tag td buat nama dosen karena udah di-rowspan dari atas -->
+                        <th scope="row">3</th>
+                        <td>Pengembangan UI/UX Inovatif Berbasis Figma untuk Aplikasi Mahasiswa</td>
+                        <td>Konferensi Nasional Interaksi Manusia dan Komputer</td>
+                        <td>2026</td>
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <!-- Bagian footer tabel buat nampilin total -->
+                        <th scope="row" colspan="4">Total Publikasi Keseluruhan</th>
+                        <td>3 Publikasi</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
     </main>
 
     <footer>
