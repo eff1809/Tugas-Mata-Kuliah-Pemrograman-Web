@@ -1,0 +1,26 @@
+/* =========================================
+   Global Reset & Base Styles
+   ========================================= */
+
+/* Terapkan reset global menggunakan model border-box sesuai spesifikasi */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f4f6f8; /* Warna background lembut biar kartu lebih menonjol */
+    line-height: 1.5;
+    color: #333;
+}
+
+.container {
+    /* Flexbox untuk menengahkan kartu di tengah layar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
