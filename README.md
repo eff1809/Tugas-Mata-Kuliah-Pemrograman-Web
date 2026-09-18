@@ -1,3 +1,8 @@
+TUGAS PEMROGRAMAN WEB
+
+Nama : Efraim Imanuel Parasak
+NIM  : D121241062
+
 # Daftar Publikasi Ilmiah
 
 Halaman ini menampilkan daftar publikasi ilmiah dosen Departemen Teknik Informatika, Universitas Hasanuddin (UNHAS). Seluruh data pada tabel diambil dari publikasi nyata yang dapat diverifikasi melalui tautan di bawah.
