@@ -54,7 +54,19 @@
                     </video>
                 </div>
                 
-                <!-- Area audio akan kita tambahkan di tahap selanjutnya -->
+                
+                <!-- BEM Element: media-card__audio-container -->
+                <div class="media-card__audio-container">
+                    <p class="media-card__audio-label">Versi Podcast (Hemat Kuota):</p>
+                    <!-- Tag audio HTML5 dengan kontrol -->
+                    <audio class="media-card__audio" controls>
+                        <!-- Dua format file agar kompatibel lintas browser -->
+                        <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+                        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+                        <!-- Fallback jika browser jadul -->
+                        Browser Anda tidak mendukung elemen audio.
+                    </audio>
+                </div>
             </div>
             
         </article>

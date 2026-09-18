@@ -94,3 +94,27 @@ body {
     width: 100%;
     display: block; /* Menghilangkan gap spasi aneh di bawah elemen video */
 }
+
+/* =========================================
+   BEM Element: Audio Player
+   ========================================= */
+
+.media-card__audio-container {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eeeeee; /* Garis pemisah estetik antara video dan audio */
+}
+
+.media-card__audio-label {
+    font-size: 0.85rem;
+    color: #666666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.media-card__audio {
+    width: 100%;
+    /* Mengatur tinggi default audio player agar tidak terlalu memakan tempat */
+    height: 40px; 
+    outline: none;
+}
