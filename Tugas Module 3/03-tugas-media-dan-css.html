@@ -19,13 +19,13 @@
                 <!-- Implementasi Art Direction dengan elemen <picture> -->
                 <picture>
                     <!-- Tampilan untuk layar besar (tablet/desktop) -->
-                    <source media="(min-width: 768px)" srcset="https://via.placeholder.com/800x400.webp?text=Ilustrasi+Desktop" type="image/webp">
+                    <source media="(min-width: 768px)" srcset="src/elearning poster.jpg" type="image/webp">
                     
                     <!-- Tampilan untuk layar kecil (mobile) -->
-                    <source media="(max-width: 767px)" srcset="https://via.placeholder.com/400x300.webp?text=Ilustrasi+Mobile" type="image/webp">
+                    <source media="(max-width: 767px)" srcset="src/elearning poster.jpg" type="image/webp">
                     
-                    <!-- Fallback img wajib ada jika browser jadul tidak support <picture> atau WebP -->
-                    <img class="media-card__image" src="https://via.placeholder.com/800x400.jpg?text=Ilustrasi+Fallback" alt="Ilustrasi Sampul Materi Kuliah">
+                    <!-- Fallback img -->
+                    <img class="media-card__image" src="src/elearning poster.jpg" alt="Ilustrasi Sampul Materi Kuliah">
                 </picture>
             </div>
 
@@ -39,7 +39,7 @@
                 <div class="media-card__video-container">
                     <!-- Atribut controls wajib ada biar user bisa play/pause -->
                     <!-- Atribut poster buat thumbnail video sebelum diputar -->
-                    <video class="media-card__video" controls poster="https://via.placeholder.com/800x450.jpg?text=Thumbnail+Video+Materi">
+                    <video class="media-card__video" controls poster="https://placehold.co/800x450/png?text=Thumbnail+Video+Materi">
                         
                         <!-- Format cadangan 1: WebM (Ukuran lebih kecil, cocok buat browser modern) -->
                         <source src="https://www.w3schools.com/html/mov_bbb.webm" type="video/webm">
