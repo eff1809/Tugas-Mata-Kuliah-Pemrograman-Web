@@ -11,7 +11,27 @@
 
     <!-- Area utama untuk menampung kartu e-learning -->
     <main class="container">
-        <!-- Nanti elemen kartu multimedia dengan pola BEM ditaruh di sini -->
+        <!-- BEM Block: media-card -->
+        <article class="media-card">
+            
+            <!-- BEM Element: media-card__cover -->
+            <div class="media-card__cover">
+                <!-- Implementasi Art Direction dengan elemen <picture> -->
+                <picture>
+                    <!-- Tampilan untuk layar besar (tablet/desktop) -->
+                    <source media="(min-width: 768px)" srcset="https://via.placeholder.com/800x400.webp?text=Ilustrasi+Desktop" type="image/webp">
+                    
+                    <!-- Tampilan untuk layar kecil (mobile) -->
+                    <source media="(max-width: 767px)" srcset="https://via.placeholder.com/400x300.webp?text=Ilustrasi+Mobile" type="image/webp">
+                    
+                    <!-- Fallback img wajib ada jika browser jadul tidak support <picture> atau WebP -->
+                    <img class="media-card__image" src="https://via.placeholder.com/800x400.jpg?text=Ilustrasi+Fallback" alt="Ilustrasi Sampul Materi Kuliah">
+                </picture>
+            </div>
+
+            <!-- Area konten audio & video akan ditambahkan di sini pada tahap selanjutnya -->
+            
+        </article>
     </main>
 
 </body>

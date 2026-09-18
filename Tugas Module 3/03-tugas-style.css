@@ -24,3 +24,40 @@ body {
     min-height: 100vh;
     padding: 20px;
 }
+
+/* =========================================
+   BEM Block: Media Card
+   ========================================= */
+
+.media-card {
+    /* Margin terpusat. (Kita batasi lebarnya agar tidak terlalu memanjang di layar besar) */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    
+    /* Styling visual dasar */
+    background-color: #ffffff;
+    border-radius: 12px; /* Sudut melengkung */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Bayangan halus */
+    overflow: hidden; /* Memotong ujung gambar agar ikut melengkung sesuai border-radius */
+    
+    /* Transisi lembut saat hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Modifier hover pada Block */
+.media-card:hover {
+    transform: translateY(-6px); /* Kartu seolah terangkat */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15); /* Bayangan lebih pekat saat di-hover */
+}
+
+/* =========================================
+   BEM Element: Image Cover
+   ========================================= */
+
+.media-card__image {
+    width: 100%;
+    height: auto;
+    display: block; /* Menghilangkan gap misterius di bawah gambar bawaan default browser */
+    object-fit: cover;
+}
