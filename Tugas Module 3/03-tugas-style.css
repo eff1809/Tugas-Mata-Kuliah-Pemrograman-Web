@@ -61,3 +61,36 @@ body {
     display: block; /* Menghilangkan gap misterius di bawah gambar bawaan default browser */
     object-fit: cover;
 }
+
+/* =========================================
+   BEM Element: Content & Video Player
+   ========================================= */
+
+.media-card__content {
+    /* Ngasih ruang nafas (whitespace) di dalam kartu */
+    padding: 24px;
+}
+
+.media-card__title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.media-card__description {
+    font-size: 0.95rem;
+    color: #555555;
+    margin-bottom: 20px; /* Jarak antara teks dan video */
+}
+
+.media-card__video-container {
+    background-color: #000; /* Biar kalau video lagi loading, backgroundnya item estetik, bukan putih */
+    border-radius: 8px; /* Sudut membulat ngikutin tema kartunya */
+    overflow: hidden;
+}
+
+.media-card__video {
+    width: 100%;
+    display: block; /* Menghilangkan gap spasi aneh di bawah elemen video */
+}

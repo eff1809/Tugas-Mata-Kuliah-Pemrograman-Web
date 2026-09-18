@@ -30,6 +30,32 @@
             </div>
 
             <!-- Area konten audio & video akan ditambahkan di sini pada tahap selanjutnya -->
+
+            <!-- BEM Element: media-card__content -->
+            <div class="media-card__content">
+                <!-- Kita tambahkan judul dan deskripsi supaya kartunya berbentuk e-learning beneran -->
+                <h2 class="media-card__title">Pengantar Struktur Data & Algoritma</h2>
+                <p class="media-card__description">Materi video kali ini membahas konsep dasar Array dan Linked List beserta contoh implementasinya.</p>
+                
+                <!-- BEM Element: media-card__video-container -->
+                <div class="media-card__video-container">
+                    <!-- Atribut controls wajib ada biar user bisa play/pause -->
+                    <!-- Atribut poster buat thumbnail video sebelum diputar -->
+                    <video class="media-card__video" controls poster="https://via.placeholder.com/800x450.jpg?text=Thumbnail+Video+Materi">
+                        
+                        <!-- Format cadangan 1: WebM (Ukuran lebih kecil, cocok buat browser modern) -->
+                        <source src="https://www.w3schools.com/html/mov_bbb.webm" type="video/webm">
+                        
+                        <!-- Format cadangan 2: MP4 (Standar industri yang paling aman, support hampir di semua browser) -->
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        
+                        <!-- Fallback text kalau browser user beneran jadul banget dan gak support HTML5 video -->
+                        Maaf, browser Anda tidak mendukung pemutar video HTML5. Silakan perbarui browser Anda.
+                    </video>
+                </div>
+                
+                <!-- Area audio akan kita tambahkan di tahap selanjutnya -->
+            </div>
             
         </article>
     </main>
