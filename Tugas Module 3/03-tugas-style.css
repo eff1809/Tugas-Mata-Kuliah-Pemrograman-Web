@@ -118,3 +118,20 @@ body {
     height: 40px; 
     outline: none;
 }
+
+/* =========================================
+   Tahap 5: Pembuktian Spesifisitas CSS
+   (Modifier BEM)
+   ========================================= */
+
+.media-card--premium .media-card__description {
+    color: #d97706; /* Warna berubah jadi oranye keemasan buat nandain status premium */
+    font-weight: 500;
+    font-style: italic;
+    
+    /* Pakai background halus biar makin kelihatan bedanya */
+    background-color: #fffbeb;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 4px solid #f59e0b;
+}
