@@ -45,5 +45,58 @@
         </ul>
       </nav>
     </header>
+
+    <!-- LAYOUT UTAMA pakai CSS Grid custom (bukan grid bawaan Bootstrap), 3 kolom baru muncul di layar >= 992px -->
+    <div class="portal-layout" id="beranda">
+      <!-- Kolom kiri, lebar tetap 200px kalau di layar besar -->
+      <aside class="portal-sidebar" aria-label="Kategori jurnal">
+        <h2 class="portal-sidebar__title">Kategori</h2>
+        <ul class="portal-sidebar__list">
+          <li><a href="#jurnal">Teknik Elektro &amp; Informatika</a></li>
+          <li><a href="#jurnal">Teknik Sipil &amp; Lingkungan</a></li>
+          <li><a href="#jurnal">Teknik Kelautan</a></li>
+          <li><a href="#jurnal">Teknik Mesin &amp; Industri</a></li>
+          <li><a href="#jurnal">Pengabdian Masyarakat</a></li>
+        </ul>
+      </aside>
+
+      <!-- Kolom tengah, lebarnya fleksibel (1fr) ngikutin sisa ruang -->
+      <main class="portal-main" id="jurnal">
+        <h2 class="portal-main__title">
+          Jurnal Terbitan Fakultas Teknik Unhas
+        </h2>
+        <p class="portal-main__lead">
+          Ini daftar jurnal ilmiah yang beneran aktif dikelola oleh Center of
+          Technology (CoT) dan beberapa departemen di Fakultas Teknik Unhas,
+          bukan data karangan.
+        </p>
+
+        <!-- TEMPAT KARTU ARTIKEL TAHAP 4 NANTI -->
+      </main>
+
+      <!-- Kolom kanan, 220px di layar gede. Di tablet dia nggak saya sembunyiin total, cuma saya taruh turun ke bawah biar isinya tetap kebaca -->
+      <aside
+        class="portal-rightbar"
+        id="tentang"
+        aria-label="Informasi tambahan"
+      >
+        <div class="portal-rightbar__box">
+          <h2 class="portal-rightbar__title">Tentang Portal</h2>
+          <p class="small">
+            Ini prototipe antarmuka yang saya buat buat tugas mata kuliah
+            Pemrograman Web, tujuannya biar teman-teman gampang nyari jurnal
+            ilmiah terbitan Fakultas Teknik Unhas.
+          </p>
+        </div>
+        <div class="portal-rightbar__box">
+          <h2 class="portal-rightbar__title">Pengumuman</h2>
+          <p class="small">
+            Batas akhir submisi naskah untuk edisi berikutnya adalah akhir bulan
+            ini. Silakan hubungi editor jurnal terkait kalau butuh info lebih
+            lanjut.
+          </p>
+        </div>
+      </aside>
+    </div>
   </body>
 </html>
