@@ -197,3 +197,32 @@ body {
     align-items: start;
   }
 }
+
+/* =========================================================
+   GRID MIKRO KARTU ARTIKEL - auto-fit + minmax
+   Jumlah kartu per baris nyesuain sendiri, nggak perlu media query manual
+   ========================================================= */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.article-card {
+  height: 100%; /* biar tinggi kartu rata meski isi teksnya beda panjang */
+  border-color: var(--warna-garis);
+}
+
+.article-card .card-title {
+  color: var(--warna-primer-gelap);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  color: #52606d;
+}
