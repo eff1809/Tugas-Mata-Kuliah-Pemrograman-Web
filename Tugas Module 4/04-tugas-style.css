@@ -104,3 +104,96 @@ body {
     gap: 1rem;
   }
 }
+
+/* =========================================================
+   LAYOUT UTAMA - CSS Grid custom (bukan grid Bootstrap)
+   Ponsel (default)   : 1 kolom, semua ditumpuk
+   Tablet (>= 768px)  : sidebar 200px + konten utama, kolom kanan turun ke bawah
+   Desktop (>= 992px) : sidebar 200px + konten fleksibel + kolom kanan 220px
+   ========================================================= */
+.portal-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* default mode hp: satu kolom aja */
+  gap: 1.25rem;
+  padding: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portal-sidebar,
+.portal-main,
+.portal-rightbar {
+  background-color: #ffffff;
+  border: 1px solid var(--warna-garis);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.portal-sidebar__title,
+.portal-rightbar__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--warna-primer);
+  margin-top: 0;
+}
+
+.portal-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.portal-sidebar__list a {
+  color: #1f2933;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.portal-sidebar__list a:hover {
+  color: var(--warna-primer);
+  text-decoration: underline;
+}
+
+.portal-main__title {
+  color: var(--warna-primer);
+  font-size: 1.25rem;
+}
+
+.portal-main__lead {
+  color: #52606d;
+  font-size: 0.95rem;
+}
+
+.portal-rightbar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.portal-rightbar__box:not(:last-child) {
+  border-bottom: 1px solid var(--warna-garis);
+  padding-bottom: 1rem;
+}
+
+/* --- Tablet: sidebar + konten utama sebelahan, kolom kanan saya taruh turun ke bawah (bukan disembunyiin total) --- */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .portal-layout {
+    grid-template-columns: 200px 1fr;
+  }
+
+  /* dipaksa ambil full lebar grid biar posisinya turun ke baris baru */
+  .portal-rightbar {
+    grid-column: 1 / -1;
+  }
+}
+
+/* --- Desktop (>= 992px): baru di sini 3 kolom lengkap sesuai spesifikasi tugas --- */
+@media (min-width: 992px) {
+  .portal-layout {
+    grid-template-columns: 200px 1fr 220px;
+    align-items: start;
+  }
+}
