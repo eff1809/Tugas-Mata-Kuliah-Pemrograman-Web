@@ -1,22 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Jurnal Ilmiah &mdash; Fakultas Teknik Universitas Hasanuddin</title>
-  <meta name="description" content="Prototipe antarmuka portal jurnal ilmiah Fakultas Teknik Universitas Hasanuddin dengan tata letak tiga kolom responsif.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Portal Jurnal Ilmiah &mdash; Fakultas Teknik Universitas Hasanuddin
+    </title>
+    <meta
+      name="description"
+      content="Prototipe antarmuka portal jurnal ilmiah Fakultas Teknik Universitas Hasanuddin dengan tata letak tiga kolom responsif."
+    />
 
-  <!-- Bootstrap 5 dari CDN. Pakai atribut integrity sesuai instruksi tugas, biar browser ikut ngecek file CSS-nya nggak diubah orang lain di tengah jalan -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-    crossorigin="anonymous">
+    <!-- Bootstrap 5 dari CDN. Pakai atribut integrity sesuai instruksi tugas, biar browser ikut ngecek file CSS-nya nggak diubah orang lain di tengah jalan -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
 
-  <!-- CSS punya saya sendiri, isinya header flexbox + layout grid -->
-  <link rel="stylesheet" href="04-tugas-style.css">
-</head>
-<body>
+    <!-- CSS punya saya sendiri, isinya header flexbox + layout grid -->
+    <link rel="stylesheet" href="04-tugas-style.css" />
+  </head>
+  <body>
+    <!-- HEADER: sengaja nggak pakai navbar bawaan Bootstrap, ini murni saya susun pakai flexbox sendiri sesuai instruksi tugas -->
+    <header class="site-header">
+      <div class="site-header__brand">
+        <span class="site-header__logo" aria-hidden="true">JT</span>
+        <div>
+          <p class="site-header__title">Portal Jurnal Ilmiah</p>
+          <p class="site-header__subtitle">
+            Fakultas Teknik &mdash; Universitas Hasanuddin
+          </p>
+        </div>
+      </div>
 
-</body>
+      <!-- Daftar menu navigasi. Di layar hp bakal turun ke bawah (satu kolom), baru sejajar mulai ukuran tablet -->
+      <nav class="site-nav" aria-label="Navigasi utama">
+        <ul class="site-nav__list">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#jurnal">Jurnal</a></li>
+          <li><a href="#terbaru">Artikel Terbaru</a></li>
+          <li><a href="#tentang">Tentang Portal</a></li>
+        </ul>
+      </nav>
+    </header>
+  </body>
 </html>

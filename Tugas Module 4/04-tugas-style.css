@@ -23,3 +23,84 @@ body {
   background-color: var(--warna-latar);
   color: #1f2933;
 }
+
+/* =========================================================
+   HEADER - flexbox murni, bukan navbar Bootstrap
+   ========================================================= */
+.site-header {
+  display: flex;
+  flex-direction: column; /* default: brand di atas, menu di bawah (mode hp) */
+  gap: 0.75rem;
+  background-color: var(--warna-primer);
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+}
+
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: var(--warna-primer);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.site-header__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.site-header__subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* Ini bagian pentingnya: link menu ditumpuk vertikal duluan (mode hp) */
+.site-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.site-nav__list a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.site-nav__list a:hover,
+.site-nav__list a:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Mulai tablet (768px ke atas): header jadi sebaris, menu juga jadi sejajar horizontal */
+@media (min-width: 768px) {
+  .site-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-nav__list {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
