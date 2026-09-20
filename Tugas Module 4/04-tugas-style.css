@@ -1,1 +1,25 @@
+/* =========================================================
+   04-tugas-style.css
+   Tugas Mandiri Modul 4 - Portal Jurnal Ilmiah Multi-Kolom
+   Catatan buat diri sendiri: Bootstrap cuma dipakai buat komponen
+   kartu (card) sama tombol (btn). Header & layout grid-nya
+   saya bikin manual pakai Flexbox & CSS Grid sesuai instruksi tugas.
+   ========================================================= */
 
+:root {
+  --warna-primer: #0b3d63;
+  --warna-primer-gelap: #082c48;
+  --warna-latar: #f4f6f8;
+  --warna-garis: #dfe4e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: var(--warna-latar);
+  color: #1f2933;
+}
