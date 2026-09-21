@@ -10,32 +10,23 @@ if (empty($_SESSION['csrf_token'])) { $_SESSION['csrf_token'] = bin2hex(random_b
 $message = '';
 $status = '';
 
-// Proses submisi form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validasi token CSRF (Syarat wajib keamanan)
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $message = 'Error: Token CSRF tidak valid. Permintaan ditolak!';
         $status = 'error';
     } else {
         $type = $_POST['type'] ?? '';
-        
-        // Filter input untuk memastikan nilainya adalah desimal float
         $amountInput = filter_input(INPUT_POST, 'amount', FILTER_VALIDATE_FLOAT);
 
-        // Validasi jumlah transaksi sebagai angka desimal positif
         if ($amountInput === false || $amountInput <= 0) {
             $message = 'Error: Jumlah transaksi wajib berupa angka desimal positif!';
             $status = 'error';
         } else {
             $id = uniqid('TRX-');
-            // Instansiasi class Transaction
             $transaction = new Transaction($id, $type, $amountInput);
-            
-            // Eksekusi pemrosesan (menolak penarikan bila saldo kurang, menambah bila deposit)
             $result = $transaction->process($_SESSION['balance']);
 
             if ($result === true) {
-                // Simpan ke riwayat, gunakan match untuk mencocokkan string UI
                 $_SESSION['history'][] = [
                     'id' => $transaction->getId(),
                     'type' => match($transaction->getType()) { 'deposit' => 'Deposit', 'withdraw' => 'Penarikan', default => 'Tidak Diketahui' },
@@ -43,8 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ];
                 $message = 'Transaksi berhasil diproses!';
                 $status = 'success';
-                
-                // Segarkan CSRF token setiap kali sukses mencegah replay attack
                 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
             } else {
                 $message = $result;
@@ -72,6 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         input, select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
         button { background: #0b3d63; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
         button:hover { background: #082c48; }
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f8f9fa; }
     </style>
 </head>
 <body>
@@ -79,13 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Sistem Keuangan Sederhana</h2>
         
         <?php if ($message): ?>
+            <!-- Proteksi XSS pada pesan menggunakan htmlspecialchars -->
             <div class="alert <?= $status ?>"><?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?></div>
         <?php endif; ?>
 
         <p>Saldo Saat Ini: <span class="balance">Rp <?= number_format($_SESSION['balance'], 2, ',', '.') ?></span></p>
 
         <form action="" method="POST">
-            <!-- Sisipkan Token CSRF Tersembunyi -->
+            <!-- Proteksi CSRF -->
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
             
             <div class="form-group">
@@ -103,6 +96,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <button type="submit">Proses Transaksi</button>
         </form>
+
+        <!-- Tabel Riwayat Transaksi -->
+        <?php if (!empty($_SESSION['history'])): ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Transaksi</th>
+                        <th>Jenis</th>
+                        <th>Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Membalik urutan agar yang terbaru muncul di atas -->
+                    <?php foreach(array_reverse($_SESSION['history']) as $trx): ?>
+                    <tr>
+                        <!-- Proteksi XSS (Cross-Site Scripting) ketat pada output riwayat transaksi -->
+                        <td><?= htmlspecialchars($trx['id'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td><?= htmlspecialchars($trx['type'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td>Rp <?= number_format($trx['amount'], 2, ',', '.') ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
     </div>
 </body>
 </html>
