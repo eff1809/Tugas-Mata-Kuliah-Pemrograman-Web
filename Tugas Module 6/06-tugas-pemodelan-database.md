@@ -370,3 +370,49 @@ CREATE TABLE peminjaman (
         ON DELETE RESTRICT
 );
 ```
+
+### Contoh data uji
+
+```sql
+INSERT INTO penerbit (nama_penerbit, kota) VALUES
+    ('McGraw-Hill', 'New York'),
+    ('MIT Press', 'Cambridge'),
+    ('Pearson', 'Boston');
+
+INSERT INTO mahasiswa (nim, nama, program_studi, angkatan) VALUES
+    ('D121241001', 'Andi Pratama', 'Teknik Informatika', 2024),
+    ('D121241002', 'Siti Rahma', 'Sistem Informasi', 2024);
+
+INSERT INTO buku (isbn, judul, pengarang, tahun_terbit, stok, id_penerbit) VALUES
+    ('9780078022159', 'Database System Concepts', 'Silberschatz', 2019, 5, 1),
+    ('9780262046305', 'Introduction to Algorithms', 'Cormen', 2022, 3, 2);
+
+INSERT INTO peminjaman (nim, id_buku, tanggal_pinjam, tanggal_jatuh_tempo, tanggal_kembali, status)
+VALUES
+    ('D121241001', 1, '2026-09-01', '2026-09-08', '2026-09-06', 'dikembalikan'),
+    ('D121241002', 2, '2026-09-10', '2026-09-17', NULL, 'dipinjam');
+```
+
+### Contoh query: daftar buku yang sedang dipinjam
+
+```sql
+SELECT m.nim, m.nama, b.judul, p.tanggal_pinjam, p.tanggal_jatuh_tempo
+FROM peminjaman p
+JOIN mahasiswa m ON m.nim = p.nim
+JOIN buku b      ON b.id_buku = p.id_buku
+WHERE p.status = 'dipinjam';
+```
+
+---
+
+## 7. Kesimpulan
+
+Dari simulasi normalisasi, data yang awalnya menumpuk dalam satu bentuk UNF berhasil dipecah menjadi empat tabel: `penerbit`, `mahasiswa`, `buku`, dan `peminjaman`. Setiap tabel sudah memenuhi 3NF sehingga redundansi berkurang dan risiko anomali saat menambah, mengubah, atau menghapus data ikut berkurang. Relasi antartabel dijaga lewat Foreign Key, sehingga riwayat peminjaman dan pengembalian tetap konsisten.
+
+---
+
+## 8. Referensi
+
+- Silberschatz, A., Korth, H. F., & Sudarshan, S. *Database System Concepts*. McGraw-Hill. (konsep ERD dan normalisasi)
+- Dokumentasi Mermaid, Entity Relationship Diagram: https://mermaid.js.org/syntax/entityRelationshipDiagram.html
+- Materi perkuliahan Pemrograman Web, Modul 6.
