@@ -241,3 +241,132 @@ Ada beberapa penyesuaian kecil agar rancangan siap diimplementasikan:
 | denda | DECIMAL(10,2) | | NOT NULL, DEFAULT 0 | Denda keterlambatan (Rp) |
 
 ---
+
+## 5. Visualisasi Relasi (Diagram Mermaid)
+
+```mermaid
+erDiagram
+    PENERBIT ||--o{ BUKU : "menerbitkan"
+    MAHASISWA ||--o{ PEMINJAMAN : "melakukan"
+    BUKU ||--o{ PEMINJAMAN : "dipinjam dalam"
+
+    PENERBIT {
+        int id_penerbit PK
+        varchar nama_penerbit
+        varchar alamat
+        varchar kota
+        varchar telepon
+    }
+
+    MAHASISWA {
+        char nim PK
+        varchar nama
+        varchar program_studi
+        smallint angkatan
+        varchar email
+        varchar no_telepon
+    }
+
+    BUKU {
+        int id_buku PK
+        varchar isbn
+        varchar judul
+        varchar pengarang
+        smallint tahun_terbit
+        int stok
+        int id_penerbit FK
+    }
+
+    PEMINJAMAN {
+        int id_peminjaman PK
+        char nim FK
+        int id_buku FK
+        date tanggal_pinjam
+        date tanggal_jatuh_tempo
+        date tanggal_kembali
+        enum status
+        decimal denda
+    }
+```
+
+### Diagram alur teks (alternatif)
+
+```
+PENERBIT (id_penerbit)
+    │ 1
+    │
+    │ N
+BUKU (id_buku, id_penerbit*)
+    │ 1
+    │
+    │ N
+PEMINJAMAN (id_peminjaman, nim*, id_buku*)
+    │ N
+    │
+    │ 1
+MAHASISWA (nim)
+
+Keterangan: * = Foreign Key
+```
+
+---
+
+## 6. Implementasi SQL (MySQL)
+
+Skrip ini saya sertakan untuk memastikan rancangan di atas benar-benar bisa dibuat tanpa galat.
+
+```sql
+CREATE DATABASE IF NOT EXISTS e_library_kampus;
+USE e_library_kampus;
+
+CREATE TABLE penerbit (
+    id_penerbit   INT AUTO_INCREMENT PRIMARY KEY,
+    nama_penerbit VARCHAR(100) NOT NULL,
+    alamat        VARCHAR(255),
+    kota          VARCHAR(50),
+    telepon       VARCHAR(20)
+);
+
+CREATE TABLE mahasiswa (
+    nim           CHAR(10) PRIMARY KEY,
+    nama          VARCHAR(100) NOT NULL,
+    program_studi VARCHAR(50)  NOT NULL,
+    angkatan      SMALLINT     NOT NULL,
+    email         VARCHAR(100) UNIQUE,
+    no_telepon    VARCHAR(20)
+);
+
+CREATE TABLE buku (
+    id_buku      INT AUTO_INCREMENT PRIMARY KEY,
+    isbn         VARCHAR(20)  NOT NULL UNIQUE,
+    judul        VARCHAR(200) NOT NULL,
+    pengarang    VARCHAR(100) NOT NULL,
+    tahun_terbit SMALLINT,
+    stok         INT NOT NULL DEFAULT 0,
+    id_penerbit  INT NOT NULL,
+    CONSTRAINT fk_buku_penerbit
+        FOREIGN KEY (id_penerbit) REFERENCES penerbit (id_penerbit)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+CREATE TABLE peminjaman (
+    id_peminjaman       INT AUTO_INCREMENT PRIMARY KEY,
+    nim                 CHAR(10) NOT NULL,
+    id_buku             INT NOT NULL,
+    tanggal_pinjam      DATE NOT NULL,
+    tanggal_jatuh_tempo DATE NOT NULL,
+    tanggal_kembali     DATE NULL,
+    status              ENUM('dipinjam', 'dikembalikan', 'terlambat')
+                        NOT NULL DEFAULT 'dipinjam',
+    denda               DECIMAL(10,2) NOT NULL DEFAULT 0,
+    CONSTRAINT fk_peminjaman_mahasiswa
+        FOREIGN KEY (nim) REFERENCES mahasiswa (nim)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+    CONSTRAINT fk_peminjaman_buku
+        FOREIGN KEY (id_buku) REFERENCES buku (id_buku)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+```
