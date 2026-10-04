@@ -411,8 +411,3 @@ Dari simulasi normalisasi, data yang awalnya menumpuk dalam satu bentuk UNF berh
 
 ---
 
-## 8. Referensi
-
-- Silberschatz, A., Korth, H. F., & Sudarshan, S. *Database System Concepts*. McGraw-Hill. (konsep ERD dan normalisasi)
-- Dokumentasi Mermaid, Entity Relationship Diagram: https://mermaid.js.org/syntax/entityRelationshipDiagram.html
-- Materi perkuliahan Pemrograman Web, Modul 6.
