@@ -191,3 +191,53 @@ Ada beberapa penyesuaian kecil agar rancangan siap diimplementasikan:
 4. Kolom `denda` disimpan sebagai riwayat nilai saat buku dikembalikan, supaya tidak berubah kalau tarif denda diubah di kemudian hari.
 
 ---
+
+# 4. Rancangan Tabel Akhir
+
+### 4.1 Tabel `penerbit`
+
+| Kolom | Tipe Data | Kunci | Constraint | Keterangan |
+|---|---|---|---|---|
+| id_penerbit | INT | PK | AUTO_INCREMENT | Identitas penerbit |
+| nama_penerbit | VARCHAR(100) | | NOT NULL | Nama penerbit |
+| alamat | VARCHAR(255) | | NULL | Alamat penerbit |
+| kota | VARCHAR(50) | | NULL | Kota penerbit |
+| telepon | VARCHAR(20) | | NULL | Nomor telepon |
+
+### 4.2 Tabel `mahasiswa`
+
+| Kolom | Tipe Data | Kunci | Constraint | Keterangan |
+|---|---|---|---|---|
+| nim | CHAR(10) | PK | NOT NULL | Nomor induk mahasiswa |
+| nama | VARCHAR(100) | | NOT NULL | Nama lengkap |
+| program_studi | VARCHAR(50) | | NOT NULL | Program studi |
+| angkatan | SMALLINT | | NOT NULL | Tahun masuk |
+| email | VARCHAR(100) | | UNIQUE | Email mahasiswa |
+| no_telepon | VARCHAR(20) | | NULL | Nomor telepon |
+
+### 4.3 Tabel `buku`
+
+| Kolom | Tipe Data | Kunci | Constraint | Keterangan |
+|---|---|---|---|---|
+| id_buku | INT | PK | AUTO_INCREMENT | Identitas buku |
+| isbn | VARCHAR(20) | | UNIQUE, NOT NULL | Nomor ISBN |
+| judul | VARCHAR(200) | | NOT NULL | Judul buku |
+| pengarang | VARCHAR(100) | | NOT NULL | Nama pengarang |
+| tahun_terbit | SMALLINT | | NULL | Tahun terbit |
+| stok | INT | | NOT NULL, DEFAULT 0 | Jumlah eksemplar tersedia |
+| id_penerbit | INT | FK | NOT NULL | Mengacu ke `penerbit.id_penerbit` |
+
+### 4.4 Tabel `peminjaman`
+
+| Kolom | Tipe Data | Kunci | Constraint | Keterangan |
+|---|---|---|---|---|
+| id_peminjaman | INT | PK | AUTO_INCREMENT | Identitas transaksi |
+| nim | CHAR(10) | FK | NOT NULL | Mengacu ke `mahasiswa.nim` |
+| id_buku | INT | FK | NOT NULL | Mengacu ke `buku.id_buku` |
+| tanggal_pinjam | DATE | | NOT NULL | Tanggal peminjaman |
+| tanggal_jatuh_tempo | DATE | | NOT NULL | Batas pengembalian |
+| tanggal_kembali | DATE | | NULL | Kosong jika belum dikembalikan |
+| status | ENUM('dipinjam','dikembalikan','terlambat') | | NOT NULL, DEFAULT 'dipinjam' | Status transaksi |
+| denda | DECIMAL(10,2) | | NOT NULL, DEFAULT 0 | Denda keterlambatan (Rp) |
+
+---
